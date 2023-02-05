@@ -1,6 +1,7 @@
 ﻿using CinemaManagementSystem.Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CinemaManagementSystem.Controllers
@@ -13,10 +14,10 @@ namespace CinemaManagementSystem.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var allProducers = await _context.Producers.ToListAsync();
-            return View();
+            var allMovies = _context.Movies.Include(n=> n.Cinema).OrderBy(n => n.Name).ToList();
+            return View(allMovies);
         }
     }
 }

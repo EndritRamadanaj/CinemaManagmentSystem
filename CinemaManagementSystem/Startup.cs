@@ -1,4 +1,5 @@
 using CinemaManagementSystem.Data;
+using CinemaManagementSystem.Data.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +31,8 @@ namespace CinemaManagementSystem
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
 
             services.AddControllersWithViews();
+            services.AddScoped<IActorsService, ActorsService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
