@@ -14,10 +14,10 @@ namespace CinemaManagementSystem.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var allProducers = await _context.Producers.ToListAsync();
-            return View();
+            var allProducers = _context.Producers.ToList();
+            return View(allProducers);
         }
     }
 }
